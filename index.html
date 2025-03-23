@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Professional Dynamic Website</title>
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --secondary-color: #3498db;
+      --accent-color: #e74c3c;
+      --light-color: #ecf0f1;
+      --dark-color: #2c3e50;
+      --success-color: #27ae60;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: var(--light-color);
+      overflow-x: hidden;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Header Styles */
+    header {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 1.5rem 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+    
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo i {
+      margin-right: 10px;
+      font-size: 2rem;
+    }
+    
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+    
+    .nav-links li {
+      margin-left: 2rem;
+    }
+    
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+      padding: 8px 15px;
+      border-radius: 4px;
+    }
+    
+    .nav-links a:hover {
+      color: var(--accent-color);
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .nav-links a.active {
+      background-color: var(--accent-color);
+    }
+    
+    /* Hero Section */
+    .hero {
+      padding: 5rem 0;
+      text-align: center;
+      background-image: url('/api/placeholder/1200/600');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      color: white;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      font-size: 1rem;
+      border: none;
+    }
+    
+    .btn-primary {
+      background-color: var(--accent-color);
+      color: white;
+      box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+    }
+    
+    .btn-primary:hover {
+      background-color: #c0392b;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(231, 76, 60, 0.6);
+    }
+    
+    .btn-secondary {
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+    
+    .btn-secondary:hover {
+      background-color: white;
+      color: var(--primary-color);
+      transform: translateY(-3px);
+    }
+    
+    /* Features Section */
+    .features {
+      padding: 5rem 0;
+      background-color: white;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    
+    .section-header h2 {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    
+    .section-header p {
+      font-size: 1.1rem;
+      color: #777;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .feature-card {
+      background-color: #f8f9fa;
+      border-radius: 10px;
+      padding: 2rem;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .feature-icon {
+      width: 70px;
+      height: 70px;
+      background-color: var(--secondary-color);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 1.8rem;
+    }
+    
+    .feature-card h3 {
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+    }
+    
+    .feature-card p {
+      color: #666;
+    }
+    
+    /* Donation Section */
+    .donation-section {
+      padding: 5rem 0;
+      background: linear-gradient(135deg, #3498db, #8e44ad);
+      color: white;
+      text-align: center;
+    }
+    
+    .donation-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .donation-section p {
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      font-size: 1.1rem;
+    }
+    
+    .donation-options {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    
+    .donation-amount {
+      padding: 15px 30px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .donation-amount:hover, .donation-amount.active {
+      background-color: rgba(255, 255, 255, 0.2);
+      transform: scale(1.05);
+    }
+    
+    .donation-amount h3 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .custom-donation {
+      margin-top: 1.5rem;
+    }
+    
+    .custom-donation input {
+      padding: 12px 20px;
+      border-radius: 50px;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 1rem;
+      width: 200px;
+      text-align: center;
+      margin-right: 10px;
+    }
+    
+    .custom-donation input::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+    
+    /* Contact Section */
+    .contact {
+      padding: 5rem 0;
+      background-color: white;
+    }
+    
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #f8f9fa;
+      padding: 3rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.05);
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 12px 20px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+    
+    .form-control:focus {
+      outline: none;
+      border-color: var(--secondary-color);
+      box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+    }
+    
+    textarea.form-control {
+      resize: vertical;
+      min-height: 150px;
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--dark-color);
+      color: white;
+      padding: 4rem 0 2rem;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    
+    .footer-column h3 {
+      color: white;
+      margin-bottom: 1.5rem;
+      font-size: 1.3rem;
+    }
+    
+    .footer-column p {
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 1rem;
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+    
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-links a:hover {
+      color: var(--accent-color);
+    }
+    
+    .social-icons {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .social-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      color: white;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+    
+    .social-icon:hover {
+      background-color: var(--accent-color);
+      transform: translateY(-3px);
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.5);
+    }
+    
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .modal-content {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 500px;
+      position: relative;
+      animation: modalOpen 0.4s;
+    }
+    
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #777;
+      transition: color 0.3s;
+    }
+    
+    .close-modal:hover {
+      color: var(--accent-color);
+    }
+    
+    @keyframes modalOpen {
+      from {transform: scale(0.8); opacity: 0;}
+      to {transform: scale(1); opacity: 1;}
+    }
+    
+    /* Animations */
+    .fade-in {
+      animation: fadeIn 1s ease-in;
+    }
+    
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn {
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+      
+      .donation-options {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .donation-amount {
+        width: 80%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="logo">
+          <span>VardhanTech</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#" class="active">Home</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#donation">Donate</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content fade-in">
+        <h1>Welcome to the Next Level Professional Website</h1>
+        <p>Experience the perfect blend of stunning design, smooth interactions, and powerful functionality. Our platform is designed to provide an exceptional user experience for everyone.</p>
+        <div class="cta-buttons">
+          <button class="btn btn-primary" onclick="showWelcomeModal()">Get Started</button>
+          <a href="#features" class="btn btn-secondary">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="features">
+    <div class="container">
+      <div class="section-header">
+        <h2>Powerful Features</h2>
+        <p>Discover what makes our platform stand out from the competition</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">1</div>
+          <h3>Responsive Design</h3>
+          <p>Perfectly optimized for all devices and screen sizes, ensuring a seamless experience everywhere.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">2</div>
+          <h3>Fast Performance</h3>
+          <p>Lightning-fast loading speeds and smooth interactions for the best user experience.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">3</div>
+          <h3>Advanced Security</h3>
+          <p>State-of-the-art security measures to keep your data safe and protected at all times.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Donation Section -->
+  <section id="donation" class="donation-section">
+    <div class="container">
+      <h2>Support Our Mission</h2>
+      <p>Your generous donation helps us continue improving and developing new features. Choose an amount that works for you.</p>
+      <div class="donation-options">
+        <div class="donation-amount" onclick="selectDonation(10)">
+          <h3>$10</h3>
+          <p>Basic Support</p>
+        </div>
+        <div class="donation-amount" onclick="selectDonation(25)">
+          <h3>$25</h3>
+          <p>Silver Supporter</p>
+        </div>
+        <div class="donation-amount" onclick="selectDonation(50)">
+          <h3>$50</h3>
+          <p>Gold Supporter</p>
+        </div>
+      </div>
+      <div class="custom-donation">
+        <input type="number" id="customAmount" placeholder="Custom amount" min="1">
+        <button class="btn btn-primary" onclick="processDonation()">Donate Now</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="section-header">
+        <h2>Get In Touch</h2>
+        <p>Have questions or feedback? We'd love to hear from you!</p>
+      </div>
+      <div class="contact-form">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Your Name" required>
+        </div>
+        <div class="form-group">
+          <input type="email" class="form-control" placeholder="Your Email" required>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Subject">
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" placeholder="Your Message" required></textarea>
+        </div>
+        <button class="btn btn-primary" style="width: 100%;" onclick="submitForm()">Send Message</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>About Us</h3>
+          <p>We are dedicated to creating professional, high-quality web experiences that make a difference.</p>
+          <div class="social-icons">
+            <a href="#" class="social-icon">f</a>
+            <a href="#" class="social-icon">t</a>
+            <a href="#" class="social-icon">in</a>
+            <a href="#" class="social-icon">g</a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#donation">Donate</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Contact Info</h3>
+          <p>Email: info@vardhantech.com</p>
+          <p>Phone: +1 (123) 456-7890</p>
+          <p>Address: 123 Tech Street, Digital City</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 VardhanTech. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal -->
+  <div id="welcomeModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+      <h2 style="color: var(--primary-color); margin-bottom: 1rem;">Welcome, Supreme Vardhan!</h2>
+      <p style="margin-bottom: 1.5rem;">Thank you for visiting our professional website. We're honored to have you here.</p>
+      <p style="margin-bottom: 1.5rem;">Would you like to explore our features or make a donation to support our mission?</p>
+      <div style="display: flex; justify-content: space-between;">
+        <button class="btn btn-secondary" onclick="closeModal()">Explore Site</button>
+        <button class="btn btn-primary" onclick="closeModal(); window.location.href='#donation';">Make a Donation</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div id="successModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeSuccessModal()">&times;</span>
+      <div style="text-align: center; color: var(--success-color);">
+        <h2 style="margin-bottom: 1rem;">Success!</h2>
+        <p id="successMessage" style="margin-bottom: 1.5rem;">Your action has been completed successfully.</p>
+        <button class="btn btn-primary" onclick="closeSuccessModal()">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Modal functions
+    function showWelcomeModal() {
+      document.getElementById('welcomeModal').style.display = 'flex';
+    }
+    
+    function closeModal() {
+      document.getElementById('welcomeModal').style.display = 'none';
+    }
+    
+    function closeSuccessModal() {
+      document.getElementById('successModal').style.display = 'none';
+    }
+    
+    // Donation selector
+    let selectedAmount = 0;
+    const donationElements = document.querySelectorAll('.donation-amount');
+    
+    function selectDonation(amount) {
+      selectedAmount = amount;
+      donationElements.forEach(el => el.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+      document.getElementById('customAmount').value = '';
+    }
+    
+    function processDonation() {
+      const customAmount = document.getElementById('customAmount').value;
+      const finalAmount = customAmount ? customAmount : selectedAmount;
+      
+      if (finalAmount && finalAmount > 0) {
+        document.getElementById('successMessage').innerText = `Thank you for your donation of $${finalAmount}! Your support means everything to us.`;
+        document.getElementById('successModal').style.display = 'flex';
+      } else {
+        alert('Please select or enter a donation amount.');
+      }
+    }
+    
+    // Form submission
+    function submitForm() {
+      // Form validation would go here in a real implementation
+      document.getElementById('successMessage').innerText = 'Your message has been sent successfully. We will get back to you shortly.';
+      document.getElementById('successModal').style.display = 'flex';
+      
+      // Reset form fields
+      const formInputs = document.querySelectorAll('.form-control');
+      formInputs.forEach(input => input.value = '');
+    }
+    
+    // Smooth scrolling for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+    
+    // Animation for features on scroll
+    const featureCards = document.querySelectorAll('.feature-card');
+    
+    const observerOptions = {
+      threshold: 0.1
+    };
+    
+    const observer = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    
+    featureCards.forEach(card => {
+      card.style.opacity = 0;
+      card.style.transform = 'translateY(30px)';
+      card.style.transition = 'all 0.5s ease-out';
+      observer.observe(card);
+    });
+    
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+      if (event.target == document.getElementById('welcomeModal')) {
+        closeModal();
+      }
+      if (event.target == document.getElementById('successModal')) {
+        closeSuccessModal();
+      }
+    }
+    
+    // Show welcome modal automatically after a short delay
+    setTimeout(showWelcomeModal, 1500);
+  </script>
+</body>
+</html>
